@@ -59,7 +59,7 @@ const personGenerator = {
             "id_1": "Иванов",
             "id_2": "Дмитриев",
             "id_3": "Сергеев",
-            "id_4": "Никит",
+            "id_4": "Васильев",
             "id_5": "Святославов",
             "id_6": "Максимов",
             "id_7": "Андреев",
@@ -85,6 +85,26 @@ const personGenerator = {
             "id_12": "декабря"
         }   
     }`,
+	professionMale: `{
+        "count": 5,
+        "list": {     
+            "id_1": "Слесарь",
+            "id_2": "Прораб",
+            "id_3": "Плиточник",
+            "id_4": "Водитель",
+            "id_5": "Барбер"
+        }   
+    }`,
+	professionFemale: `{
+        "count": 5,
+        "list": {     
+            "id_1": "Медсестра",
+            "id_2": "Визажистка",
+            "id_3": "Учительница",
+            "id_4": "Вожатая",
+            "id_5": "Модель"
+        }   
+    }`,
 
 	GENDER_MALE: 'Мужчина',
 	GENDER_FEMALE: 'Женщина',
@@ -98,63 +118,87 @@ const personGenerator = {
 		return obj.list[prop]
 	},
 
+	// Генерация пола
+
 	randomGender: function () {
 		randGender = this.randomIntNumber(1, 0)
 		switch (randGender) {
 			case 0:
-				return this.GENDER_FEMALE;
+				return this.GENDER_FEMALE
 			default:
-				return this.GENDER_MALE;
+				return this.GENDER_MALE
 		}
 	},
+
+	// Генерация Имени
 
 	randomFirstName: function () {
 		switch (randGender) {
 			case 0:
-				return this.randomValue(this.firstNameFemaleJson);
+				return this.randomValue(this.firstNameFemaleJson)
 			default:
-				return this.randomValue(this.firstNameMaleJson);
+				return this.randomValue(this.firstNameMaleJson)
 		}
 	},
+
+	// Генерация фамилии
 
 	randomSurname: function () {
 		switch (randGender) {
 			case 0:
-				return this.randomValue(this.surnameJson) + 'а';
+				return this.randomValue(this.surnameJson) + 'а'
 			default:
-				return this.randomValue(this.surnameJson);
+				return this.randomValue(this.surnameJson)
 		}
 	},
 
-    randomMiddleNme: function () {
+	// Генерация отчества
+
+	randomMiddleNme: function () {
 		switch (randGender) {
 			case 0:
-				return this.randomValue(this.middleNameJson) + 'на';
+				return this.randomValue(this.middleNameJson) + 'на'
 			default:
-				return this.randomValue(this.middleNameJson) + 'ич';
+				return this.randomValue(this.middleNameJson) + 'ич'
 		}
 	},
 
-    randomBirthYear: function () {
-		return this.randomIntNumber(1965, 2000)
+    // Генерация профессии
+
+    randomProfession: function () {
+        switch (randGender) {
+            case 0:
+                return this.randomValue(this.professionFemale)      
+            default:
+                return this.randomValue(this.professionMale)
+        }
+    },
+
+	// Генерация года рождения
+
+	randomBirthYear: function () {
+		return this.randomIntNumber(1965, 2000) + ' года рождения'
 	},
 
-    randomBirthMonth: function () {
-        randomDay = this.randomValue(this.monthBirthJson) + ' ';
-        return randomDay;
-    },
+	// Генерация месяца рождения
 
-    randomBirthDay: function () {
+	randomBirthMonth: function () {
+		randomMonth = this.randomValue(this.monthBirthJson) + ' '
+		return randomMonth
+	},
 
-        if (randomDay === 2) {
-            return this.randomIntNumber(28, 1) + ' ';
-        } else if (randomDay % 2 === 0) {
-            return this.randomIntNumber(30, 1) + ' ';
-        } else {
-            return this.randomIntNumber(31, 1) + ' ';
-        }
+	// Генерация дня рождения
 
-    },
+	randomBirthDay: function () {
+		randomDay = this.randomIntNumber(12, 1)
+		if (randomDay == 2) {
+			return this.randomIntNumber(28, 1) + ' '
+		} else if (randomDay % 2 == 0) {
+			return this.randomIntNumber(30, 1) + ' '
+		} else {
+			return this.randomIntNumber(31, 1) + ' '
+		}
+	},
 
 	getPerson: function () {
 		this.person = {}
@@ -162,9 +206,10 @@ const personGenerator = {
 		this.person.firstName = this.randomFirstName()
 		this.person.surname = this.randomSurname()
 		this.person.middleName = this.randomMiddleNme()
+        this.person.randomProf = this.randomProfession()
 		this.person.birthYear = this.randomBirthYear()
-        this.person.birthMonth = this.randomBirthMonth()
-        this.person.birthDay = this.randomBirthDay()
+		this.person.birthMonth = this.randomBirthMonth()
+		this.person.birthDay = this.randomBirthDay()
 		return this.person
 	},
 }
