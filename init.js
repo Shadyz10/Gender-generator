@@ -1,6 +1,6 @@
 document.querySelector('#generatorBtn').addEventListener('click', () =>
 {
-    const initPerson = personGenerator.getPerson();
+    initPerson = personGenerator.getPerson();
     document.querySelector('#firstNameOutput').innerHTML = initPerson.firstName;
     document.querySelector('#surnameOutput').innerHTML = initPerson.surname;
     document.querySelector('#genderOutput').innerHTML = initPerson.gender;
@@ -12,6 +12,14 @@ document.querySelector('#generatorBtn').addEventListener('click', () =>
 });
 
 document.querySelector('#clearBtn').addEventListener('click', () => {
-    location.reload();
+    // location.reload();
+    initPerson = personGenerator.getPerson();
+    document.querySelector('#firstNameOutput').innerHTML = 'Имя';
+    document.querySelector('#surnameOutput').innerHTML = 'Фамилия';
+    document.querySelector('#genderOutput').innerHTML = 'Пол';
+    document.querySelector('#middleName').innerHTML = 'Отчество';
+    document.querySelector('#profession').innerHTML = 'профессия';
+    document.querySelector('#birthYearOutput').innerHTML = 'год рождения';
+    document.querySelector('#birthMonthOutput').innerHTML = 'месяц ';
+    document.querySelector('#birthDayOutput').innerHTML = 'день ';
 });
-

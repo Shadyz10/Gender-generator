@@ -53,21 +53,6 @@ const personGenerator = {
         }   
     }`,
 
-	middleNameJson: `{
-        "count": 10,
-        "list": {     
-            "id_1": "Иванов",
-            "id_2": "Дмитриев",
-            "id_3": "Сергеев",
-            "id_4": "Васильев",
-            "id_5": "Святославов",
-            "id_6": "Максимов",
-            "id_7": "Андреев",
-            "id_8": "Егоров",
-            "id_9": "Данилов",
-            "id_10": "Степанов"
-        }   
-    }`,
 	monthBirthJson: `{
         "count": 12,
         "list": {     
@@ -85,6 +70,7 @@ const personGenerator = {
             "id_12": "декабря"
         }   
     }`,
+
 	professionMale: `{
         "count": 5,
         "list": {     
@@ -95,6 +81,7 @@ const personGenerator = {
             "id_5": "Барбер"
         }   
     }`,
+
 	professionFemale: `{
         "count": 5,
         "list": {     
@@ -154,25 +141,49 @@ const personGenerator = {
 
 	// Генерация отчества
 
-	randomMiddleNme: function () {
-		switch (randGender) {
-			case 0:
-				return this.randomValue(this.middleNameJson) + 'на'
-			default:
-				return this.randomValue(this.middleNameJson) + 'ич'
-		}
+	randomMiddleName: function () {
+		randomName = this.randomValue(this.firstNameMaleJson)
+		// console.log(randomName)
+		if (randGender == 1) {
+			if (randomName == 'Михаил') {
+				return randomName.replace('ил', 'йлович')
+			} else if (randomName == 'Дмитрий') {
+				return randomName.replace('й', 'евич')
+			} else if (randomName == 'Андрей') {
+				return randomName.replace('й', 'евич')
+			} else if (randomName == 'Никита') {
+				return randomName.replace('а', 'ич')
+			} else {
+				return randomName + 'ович'
+			}
+			
+		} else {
+			if (randGender == 0) {
+				if (randomName == 'Михаил') {
+					return randomName.replace('ил', 'йловна')
+				} else if (randomName == 'Дмитрий') {
+					return randomName.replace('й', 'евна')
+				} else if (randomName == 'Андрей') {
+					return randomName.replace('й', 'евна')
+				} else if (randomName == 'Никита') {
+					return randomName.replace('а', 'ична')
+				} else {
+					return randomName + 'овна'
+				}
+			}
+		}   
 	},
 
-    // Генерация профессии
+	// Генерация профессии
 
-    randomProfession: function () {
-        switch (randGender) {
-            case 0:
-                return this.randomValue(this.professionFemale)      
-            default:
-                return this.randomValue(this.professionMale)
-        }
-    },
+	randomProfession: function () {
+		switch (randGender) {
+			case 0:
+				return this.randomValue(this.professionFemale)
+			default:
+				return this.randomValue(this.professionMale)
+		}
+	},
 
 	// Генерация года рождения
 
@@ -205,8 +216,8 @@ const personGenerator = {
 		this.person.gender = this.randomGender()
 		this.person.firstName = this.randomFirstName()
 		this.person.surname = this.randomSurname()
-		this.person.middleName = this.randomMiddleNme()
-        this.person.randomProf = this.randomProfession()
+		this.person.middleName = this.randomMiddleName()
+		this.person.randomProf = this.randomProfession()
 		this.person.birthYear = this.randomBirthYear()
 		this.person.birthMonth = this.randomBirthMonth()
 		this.person.birthDay = this.randomBirthDay()
