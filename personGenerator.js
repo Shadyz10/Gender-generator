@@ -145,21 +145,20 @@ const personGenerator = {
 		randomName = this.randomValue(this.firstNameMaleJson)
 		// console.log(randomName)
 		if (randGender == 1) {
-			if (randomName == 'Михаил') {
-				return randomName.replace('ил', 'йлович')
-			} else if (randomName == 'Дмитрий') {
-				return randomName.replace('й', 'евич')
-			} else if (randomName == 'Андрей') {
-				return randomName.replace('й', 'евич')
-			} else if (randomName == 'Никита') {
-				return randomName.replace('а', 'ич')
-			} else {
-				return randomName + 'ович'
+				if (randomName == 'Михаил') {
+					return randomName.replace('ил', 'йлович')
+				} else if (randomName == 'Дмитрий') {
+					return randomName.replace('й', 'евич')
+				} else if (randomName == 'Андрей') {
+					return randomName.replace('й', 'евич')
+				} else if (randomName == 'Никита') {
+					return randomName.replace('а', 'ич')
+				} else {
+					return randomName + 'ович'
 			}
 			
 		} else {
-			if (randGender == 0) {
-				if (randomName == 'Михаил') {
+			if (randomName == 'Михаил') {
 					return randomName.replace('ил', 'йловна')
 				} else if (randomName == 'Дмитрий') {
 					return randomName.replace('й', 'евна')
@@ -169,7 +168,6 @@ const personGenerator = {
 					return randomName.replace('а', 'ична')
 				} else {
 					return randomName + 'овна'
-				}
 			}
 		}   
 	},
